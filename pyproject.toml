@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "checkpnt"
+version = "0.1.0"
+description = "Framework-agnostic state persistence for AI agents. Resume any agent from exactly where it stopped."
+readme = "README.md"
+license = { text = "Business Source License 1.1" }
+authors = [{ name = "Tech4Biz Solutions Pvt Ltd", email = "hello@checkpnt.dev" }]
+requires-python = ">=3.11"
+keywords = ["ai", "agents", "langgraph", "crewai", "autogen", "state", "persistence", "checkpointing"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+
+dependencies = [
+    "msgpack>=1.0",
+]
+
+[project.optional-dependencies]
+redis = ["redis>=5.0"]
+langgraph = ["langgraph>=0.2"]
+crewai = ["crewai>=0.1"]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "ruff>=0.4",
+    "mypy>=1.10",
+]
+all = ["checkpnt[redis,langgraph,crewai,dev]"]
+
+[project.urls]
+Homepage = "https://checkpnt.dev"
+Repository = "https://github.com/vaibhav-v2/checkpnt"
+Documentation = "https://docs.checkpnt.dev"
+"Bug Tracker" = "https://github.com/vaibhav-v2/checkpnt/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
