@@ -56,4 +56,4 @@ jobs:
             langgraph>=1.0 \
             langchain-core>=1.0
       - name: Test Redis
-        run: PYTHONPATH=src pytest tests/integration/test_redis_backend.py -v --redis-url=redis://localhost:6379
+        run: PYTHONPATH=src CHECKPNT_TEST_REDIS_URL=redis://localhost:6379 pytest tests/integration/test_redis_backend.py -v
