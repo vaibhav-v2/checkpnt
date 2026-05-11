@@ -45,8 +45,12 @@ Repository = "https://github.com/vaibhav-v2/checkpnt"
 Documentation = "https://docs.checkpnt.dev"
 "Bug Tracker" = "https://github.com/vaibhav-v2/checkpnt/issues"
 
+[tool.setuptools.package-dir]
+"" = "src"
+
 [tool.setuptools.packages.find]
 where = ["src"]
+include = ["checkpnt*"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
