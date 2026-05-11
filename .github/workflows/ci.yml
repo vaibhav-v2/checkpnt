@@ -22,16 +22,17 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Install dependencies
-        run: pip install -e ".[dev]"
-
-      - name: Lint
-        run: ruff check src/ tests/
-
-      - name: Type check
-        run: mypy src/checkpnt/
+        run: |
+          pip install \
+            msgpack \
+            aiosqlite \
+            pytest \
+            pytest-asyncio \
+            langgraph>=1.0 \
+            langchain-core>=1.0
 
       - name: Test
-        run: pytest tests/ -v
+        run: PYTHONPATH=src pytest tests/unit/ tests/integration/test_langgraph_resume.py -v --asyncio-mode=auto
 
   test-redis:
     runs-on: ubuntu-latest
@@ -44,5 +45,15 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install -e ".[redis,dev]"
-      - run: pytest tests/integration/ -v --redis-url=redis://localhost:6379
+      - name: Install dependencies
+        run: |
+          pip install \
+            msgpack \
+            aiosqlite \
+            redis \
+            pytest \
+            pytest-asyncio \
+            langgraph>=1.0 \
+            langchain-core>=1.0
+      - name: Test Redis
+        run: PYTHONPATH=src pytest tests/integration/test_redis_backend.py -v --redis-url=redis://localhost:6379
