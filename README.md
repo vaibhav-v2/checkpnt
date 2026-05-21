@@ -48,6 +48,8 @@ LangGraph maintainers closed Issue #5790 as **"by design"**. The `langgraph dev`
 pip install checkpnt
 ```
 
+📖 **New to Checkpnt?** Start with the [LangGraph Quickstart](QUICKSTART.md) — working crash recovery in 5 minutes.
+
 **Save and restore state — any framework, 5 lines:**
 
 ```python
